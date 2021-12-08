@@ -49,6 +49,12 @@ pub async fn info(conf: &mut Config, verbose: bool) -> Result<i32, Error> {
         print_aur_info(conf, verbose, &aur)?;
     }
 
+    let a = Some(3);
+    match a {
+        Some(_) => todo!(),
+        None => todo!(),
+    }
+
     Ok(ret)
 }
 
