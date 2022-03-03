@@ -206,6 +206,10 @@ Remove a package from the local repo.
 Pass this twice to also uninstall the package.
 
 .TP
+.B \-y, \-\-refresh
+Refresh local repos.
+
+.TP
 .B \-q, \-\-quiet
 Show less information.
 
@@ -215,7 +219,7 @@ Show less information.
 Install a package into the chroot.
 
 .TP
-.B \-u, \-\-upgrade
+.B \-u, \-\-sysupgrade
 Upgrade the chroot.
 
 .SH UPGRADE OPTIONS (APPLY TO \-U AND \-\-UPGRADE)
@@ -586,6 +590,15 @@ Sign packages with gpg. Optionally indicate which key to sign with.
 .TP
 .B \-\-nosign
 Don't sign package with gpg.
+
+.TP
+.B \-\-keeprepocache
+Normally upon AUR packages getting updated the old versions will be removed from the local repo.
+This option disables that behavior, keeping the both all versions and only updating the DB.
+
+.TP
+.B \-\-nokeeprepocache
+Don't keep old packages.
 
 .TP
 .B \-\-signdb [= key]

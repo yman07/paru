@@ -55,7 +55,12 @@ pub fn add<P: AsRef<Path>, S: AsRef<OsStr>>(
         .collect::<Vec<_>>();
 
     let mut cmd = Command::new("repo-add");
-    cmd.arg("-R").arg(file).args(pkgs);
+
+    if !config.keep_repo_cache {
+        cmd.arg("-R");
+    }
+
+    cmd.arg(file).args(pkgs);
 
     if config.sign_db != Sign::No {
         cmd.arg("-s");
@@ -172,7 +177,7 @@ pub fn refresh<S: AsRef<OsStr>>(config: &mut Config, repos: &[S]) -> Result<i32>
 
         cmd.arg("--dbpath")
             .arg(config.alpm.dbpath())
-            .arg("-Lu")
+            .arg("-Ly")
             .args(repos);
 
         let status = cmd.spawn()?.wait()?;
